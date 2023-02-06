@@ -16,16 +16,33 @@
 </head>
 
 <body class="background">
-  <header>
-    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+          <?php
+          if(!isset($_SESSION['user_id']))
+          {
+          ?>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="./">Főoldal</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="./?p=login">Bejelentkezés</a>
           </li>
+          <?php
+          }
+          ?>
+          <?php
+          if(isset($_SESSION['user_id']))
+          {
+          ?>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./?p=logout">Kijelentkezés</a>
+          </li>
+          <?php
+          }
+          ?>
         </ul>
       </div>
     </nav>

@@ -6,6 +6,9 @@
            case "login":
                $content = "include/login.php";
                break;
+            case "logout":
+                $content = "include/logout.php";
+                break;
        }   
    }
 ?>
