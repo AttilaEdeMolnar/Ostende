@@ -25,12 +25,13 @@ if(isset($_POST["btn-login"]))
     {
       $sucess_login = true;
       
-      $result = mysqli_query($con, "SELECT user_id from user WHERE user_name = '$username'");
+      $result = mysqli_query($con, "SELECT user_id from user WHERE user_name = '$username' and user_password='$password'");
+      $current_user_id = $result;
       while($row = mysqli_fetch_array($result)) 
         {
           $_SESSION['user_id'] = $row['user_id'];
           $msg_success_login = "Sikeres bejelentkezés!";
-          header('Refresh: 2; url= ./index.php');
+          header('Refresh: 1; url= ./?p=show_search');
         }
 
     }
@@ -91,7 +92,7 @@ if(isset($_POST['btn-register'])){
     $register_password = strip_tags($register_password);
     $register_password = htmlspecialchars($register_password);
 
-    $aszf_checkbox = $_POST['aszf_checkbox'];
+    $aszf_checkbox = isset($_POST['aszf_checkbox']);
 
 
     if(empty($register_username)){
@@ -122,8 +123,8 @@ if(isset($_POST['btn-register'])){
     $register_password = md5($register_password);
 
     if(!$register_error){
-        $sql = "INSERT INTO user(user_name, user_email, user_password)
-                values('$register_username', '$register_email', '$register_password')";
+        $sql = "INSERT INTO user(user_name, user_email, user_password,user_type)
+                values('$register_username', '$register_email', '$register_password',0)";
         if(mysqli_query($con, $sql)){
             $msg_success_register = 'Sikeres regisztráció.';
         }else{

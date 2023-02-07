@@ -38,6 +38,15 @@
           {
           ?>
           <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./?p=show_search">Műsorok</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./?p=own_list">Saját lista</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./?p=profile">Profil</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="./?p=logout">Kijelentkezés</a>
           </li>
           <?php
