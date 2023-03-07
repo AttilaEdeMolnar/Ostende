@@ -1,6 +1,9 @@
 <?php
    $content = "include/main.php";
-   
+   $con = Connect();
+   $result = mysqli_query($con, "SELECT books_name FROM books");
+
+
    if (isset($_GET["p"])) {
        switch($_GET["p"]){
             // Menü
@@ -26,9 +29,17 @@
             case "Tóték":
                 $content = "include/database/Tóték.php";
                 break;
-            case "Stützi":
-                $content = "./Stützi.php";
-                break;
+            default:   
+            while ($row = mysqli_fetch_array($result)) {
+               $books_name = $row['books_name'];
+
+               if($_GET["p"]==$books_name)
+               {
+                    $content = "include/database/".$books_name.".php";
+               }
+            }
+
+            
        }   
    }
 ?>

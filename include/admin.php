@@ -117,10 +117,10 @@ for ($i=0; $i <5 ; $i++) {
     </div>
   <?php
 
-    $fileCreate = fopen($show_name.'.php','w');
+    $fileCreate = fopen('./include/database/'.$show_name.'.php','w+');
     
     $fileContents = file_get_contents("./src/template.txt");
-    $fileHandle = fopen($show_name.'.php', "r+");
+    $fileHandle = fopen('./include/database/'.$show_name.'.php', "r+");
     fputs($fileHandle, $fileContents);
     fclose($fileHandle);
     fclose($fileCreate);

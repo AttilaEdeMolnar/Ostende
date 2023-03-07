@@ -5,7 +5,6 @@
     <table class="table background">
          <thead>
             <tr>
-                <th scope="col">Borító</th>
                <th scope="col">Cím</th>
                <th scope="col">Szerző</th>
                <th scope="col">Megjelenés</th>
@@ -20,8 +19,7 @@
             $result = mysqli_query($con = Connect(), "SELECT * FROM finished_books WHERE finished_books_user_id = $current_id");
             while ($row = mysqli_fetch_array($result)) {
             ?>
-               <tr>
-                <td>
+               
                      <?php
                      $books_id = $row['finished_books_books_id'];
              
@@ -29,10 +27,7 @@
                      $result = mysqli_query($con, $sql_own);
                      $sql_own_result = mysqli_fetch_array($result);
                      ?>
-
-                     <img class="picture" src="<?php echo $sql_own_result['books_picture']; ?>"/>
-                     <br>
-                  </td>
+                     <tr>
                   <td>
                      <?php
                      echo $sql_own_result['books_name'];
