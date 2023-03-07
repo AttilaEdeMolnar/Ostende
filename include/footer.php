@@ -1,4 +1,4 @@
-<footer>
+<footer class="footer">
     <p class="biggerBr"></p>
     <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">

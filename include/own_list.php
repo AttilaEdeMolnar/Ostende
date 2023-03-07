@@ -11,6 +11,7 @@
                <th scope="col">Megjelenés</th>
                <th scope="col">Értékelés</th>
                <th scope="col">Vélemény</th>
+               <th scope="col">Törlés</th>
             </tr>
          </thead>
          <tbody>
@@ -21,22 +22,38 @@
             ?>
                <tr>
                 <td>
-                     <?php echo "ÜRES" ?><br>
+                     <?php
+                     $books_id = $row['finished_books_books_id'];
+             
+                     $sql_own = "SELECT * FROM books WHERE books_id ='$books_id'";
+                     $result = mysqli_query($con, $sql_own);
+                     $sql_own_result = mysqli_fetch_array($result);
+                     ?>
+
+                     <img class="picture" src="<?php echo $sql_own_result['books_picture']; ?>"/>
+                     <br>
                   </td>
                   <td>
-                     <?php echo "ÜRES"; ?><br>
+                     <?php
+                     echo $sql_own_result['books_name'];
+                     ?><br>
                   </td>
                   <td>
-                     <?php echo "ÜRES"; ?><br>
+                     <?php
+                     echo $sql_own_result['books_author'];
+                     ?><br>
                   </td>
                   <td>
-                     <?php echo $row['finished_books_books_id']; ?><br>
+                     <?php echo $sql_own_result['books_date']; ?><br>
                   </td>
                   <td>
-                     <?php echo $row['finished_books_rating']; ?><br>
+                     <?php echo "⭐".$row['finished_books_rating']."/10"; ?><br>
                   </td>
                   <td>
                      <?php echo $row['finished_books_opinion']; ?><br>
+                  </td>
+                  <td>
+                     <a href="https://hvg.hu"> <?php echo '❌'; ?></a>
                   </td>
             <?php
             }
