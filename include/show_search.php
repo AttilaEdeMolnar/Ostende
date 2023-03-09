@@ -26,11 +26,10 @@
     <table class="table background">
          <thead>
             <tr>
-               <th scope="col">Borító</th>
                <th scope="col">Cím</th>
                <th scope="col">Szerző</th>
                <th scope="col">Megjelenés</th>
-               <th scope="col"></th>
+               <th scope="col">Saját oldaluk</th>
             </tr>
          </thead>
          <tbody>
