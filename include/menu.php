@@ -16,6 +16,9 @@
             case "admin":
                 $content = "include/admin.php";
                 break;
+            case "credit":
+                $content = "include/credit.php";
+                break;
             case "show_search":
                 $content = "include/show_search.php";
                 break;

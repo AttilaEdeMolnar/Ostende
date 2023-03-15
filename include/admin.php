@@ -78,7 +78,8 @@ for ($i=0; $i <5 ; $i++) {
     </div>
   <?php
   }
-
+  if($error==false)
+  {
   if($type==0)
   {
     //$type = "Könyv";
@@ -106,6 +107,8 @@ for ($i=0; $i <5 ; $i++) {
   {
     //$type = "Dráma";
   }
+
+}
  
   
   if ($error==false) { ?>
@@ -134,10 +137,21 @@ for ($i=0; $i <5 ; $i++) {
 
 
 <form method="POST">
-  <div class="mb-3">
+  <div class="mb-3 row">
+    <div class="col">
+
+    
+    <label for="add-show-name" class="form-label">Műsor neve:</label>
+    <input type="text" name="show-name" class="form-control" id="add-show-name" aria-describedby="emailHelp">
+    </div>
+    <div class="col">
+    <div class="mb-3">
     <label for="add-show-name" class="form-label">Műsor neve:</label>
     <input type="text" name="show-name" class="form-control" id="add-show-name" aria-describedby="emailHelp">
   </div>
+    </div>
+  </div>
+  
 <br>
   <div class="mb-3">
   <label for="add-show-name" class="form-label">Típusa:</label>
