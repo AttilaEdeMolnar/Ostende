@@ -18,34 +18,26 @@ $con = Connect();
 </tr>
 <tr>
     <td>
-
+  <h3>
 <?php
-$db_books_name = $_GET['p'];
 
-echo $db_books_name;
+echo $_GET['t'];
 ?>
+</h3>
     </td>
     <td>
+      <h3>
     <?php
-$db_author = $_GET['p'];
-
-$sql_author = "SELECT books_author FROM books WHERE books_name ='$db_author'";
-$result = mysqli_query($con, $sql_author);
-$sql_author_result = mysqli_fetch_array($result);
-
-echo $sql_author_result['books_author'];
+    echo $_GET['a']
 ?>
+</h3>
     </td>
     <td>
+      <h3>
         <?php
-        $db_author = $_GET['p'];
-
-        $sql_author = "SELECT * FROM books WHERE books_name ='$db_author'";
-        $result = mysqli_query($con, $sql_author);
-        $sql_author_result = mysqli_fetch_array($result);
-        $books_id = $sql_author_result['books_id'];
-        echo $sql_author_result['books_date'];
+        echo $_GET['d']
         ?>
+        </h3>
     </td>
 </tr>
 </table>
@@ -68,7 +60,7 @@ if(isset($_POST['own-list-button']))
 {
  $userid = $_SESSION['user_id'];
  $rating = $_POST['rating'];
- $opinion = $_POST['own-list-button'];
+ $opinion = $_POST['opinion'];
 
  echo $userid;
  echo $rating;
@@ -90,14 +82,14 @@ if(isset($_POST['own-list-button']))
   }
 
   ?>
-
+<form method="POST">
 <div class="text-center display-5">
 <h1>Elolvastad?</h1>
 <br>
 <div class="input-group mb-3">
   <div class="input-group mb-3">
   <label class="input-group-text" for="inputGroupSelect01">Értékelés</label>
-  <select class="form-select" id="inputGroupSelect01">
+  <select class="form-select" id="inputGroupSelect01" name="rating">
     <option selected>Válassz...</option>
     <option value="1">⭐1/10</option>
     <option value="2">⭐2/10</option>
@@ -112,10 +104,9 @@ if(isset($_POST['own-list-button']))
   </select>
 </div>
 </div>
-<form method="POST">
 <div class="input-group mb-3">
   <span class="input-group-text" id="inputGroup-sizing-default" name="opinion">Vélemény</span>
-  <input type="text" class="form-control" name="rating" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+  <input type="text" class="form-control" name="opinion" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 </div>
 
 <button type="submit" class="btn btn-warning" name="own-list-button">Hozzáadás a saját listához</button>

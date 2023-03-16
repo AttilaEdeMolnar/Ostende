@@ -1,138 +1,152 @@
 <div class="container">
 
 <?php
-ini_set('display_errors', 0);
-ini_set('display_startup_errors', 0);
+ini_set("display_errors", 0);
+ini_set("display_startup_errors", 0);
 
-$error=false;
+$error = false;
 
-if(isset($_POST['btn-add-show']))
+if (isset($_POST["btn-add-show"]))
 {
-  $show_name = $_POST['show-name'];
-  $author_name = $_POST['add-author'];
-  $release = $_POST['add-release-date'];
+    $show_name = $_POST["show-name"];
+    $author_name = $_POST["add-author"];
+    $release = $_POST["add-release-date"];
 
-  $c_book = $_POST['book'];
-  $c_movie = $_POST['movie'];
-  $c_tv_show = $_POST['tv-show'];
-  $c_anime = $_POST['anime'];
-  $c_drama = $_POST['drama'];
+    $c_book = $_POST["book"];
+    $c_movie = $_POST["movie"];
+    $c_tv_show = $_POST["tv-show"];
+    $c_anime = $_POST["anime"];
+    $c_drama = $_POST["drama"];
 
-  echo $c_anime;
-  $checkbox = array($c_book,$c_movie,$c_tv_show,$c_anime,$c_drama);
-  if (empty($show_name)) { ?>
+    echo $c_anime;
+    $checkbox = [$c_book, $c_movie, $c_tv_show, $c_anime, $c_drama];
+    if (empty($show_name))
+    { ?>
 
     <div class="alert alert-danger">
       <?php
-      $error=true;
-      echo "Hiányzik a műsor neve!";
-      ?>
+        $error = true;
+        echo "Hiányzik a műsor neve!";
+?>
     </div>
   <?php
-  }
-
-  // Checkboxok ellenőrzése
-
-  $isItempty = false;
-  $isItMore = false;
-  $nullCount = 0;
-  $fullCount = 0;
-  $type;
-for ($i=0; $i <5 ; $i++) {
-  if (isset($checkbox[$i])==null) {
-    $nullCount++;
-  }
-
-  if (isset($checkbox[$i])=="on") {
-    $fullCount++;
-    $type = $i;
-  }
-
-  }
-
-  if ($nullCount==5) {
-    $isItempty = true;
-  }
-
-  elseif ($fullCount>1) {
-    $isItMore = true;
-  }
-
- // Üres vagy teli?
-  if ($isItempty) { ?>
-    <div class="alert alert-danger">
-      <?php
-      $error=true;
-      echo "Hiányzik a műsor típusa!";
-      ?>
-    </div>
-  <?php
-  }
-
-  elseif ($isItMore) { ?>
-    <div class="alert alert-danger">
-      <?php
-      $error=true;
-      echo "Csak 1 típust választhatsz ki!";
-      ?>
-    </div>
-  <?php
-  }
-  if($error==false)
-  {
-  if($type==0)
-  {
-    //$type = "Könyv";
-    mysqli_query(Connect(), "INSERT INTO books(books_name, books_author, books_date)
-    values('$show_name', '$author_name', '$release')");
-    header('Refresh: 1;');
-  }
-
-  elseif($type==1)
-  {
-    //$type = "Film";
-  }
-
-  elseif($type==2)
-  {
-    //$type = "Sorozat";
-  }
-
-  elseif($type==3)
-  {
-    //$type = "Anime";
-  }
-
-  elseif($type==4)
-  {
-    //$type = "Dráma";
-  }
-
-}
- 
-  
-  if ($error==false) { ?>
-
-    <div class="alert alert-success">
-      <?php
-      echo "Sikeresen hozzá lett adva az új műsor!";
-      ?>
-    </div>
-  <?php
-
-    $fileCreate = fopen('./include/database/'.$show_name.'.php','w+');
-    
-    $fileContents = file_get_contents("./src/template.txt");
-    $fileHandle = fopen('./include/database/'.$show_name.'.php', "r+");
-    fputs($fileHandle, $fileContents);
-    fclose($fileHandle);
-    fclose($fileCreate);
-
-
     }
-    
+
+    // Checkboxok ellenőrzése
+    $isItempty = false;
+    $isItMore = false;
+    $nullCount = 0;
+    $fullCount = 0;
+    $type;
+    for ($i = 0;$i < 5;$i++)
+    {
+        if (isset($checkbox[$i]) == null)
+        {
+            $nullCount++;
+        }
+
+        if (isset($checkbox[$i]) == "on")
+        {
+            $fullCount++;
+            $type = $i;
+        }
+    }
+
+    if ($nullCount == 5)
+    {
+        $isItempty = true;
+    }
+    elseif ($fullCount > 1)
+    {
+        $isItMore = true;
+    }
+
+    // Üres vagy teli?
+    if ($isItempty)
+    { ?>
+    <div class="alert alert-danger">
+      <?php
+        $error = true;
+        echo "Hiányzik a műsor típusa!";
+?>
+    </div>
+  <?php
+    }
+    elseif ($isItMore)
+    { ?>
+    <div class="alert alert-danger">
+      <?php
+        $error = true;
+        echo "Csak 1 típust választhatsz ki!";
+?>
+    </div>
+  <?php
+    }
+    if ($error == false)
+    {
+        if ($type == 0)
+        {
+            //$type = "Könyv";
+            mysqli_query(Connect() , "INSERT INTO books(books_name, books_author, books_date)
+    values('$show_name', '$author_name', '$release')"); ?>
+
+<div class="alert alert-success">
+  <?php echo "Sikeresen hozzá lett adva az új műsor!"; ?>
+</div>
+<?php
+            $fileCreate = fopen("./include/database/" . $show_name . ".php", "w+");
+
+            $fileContents = file_get_contents("./src/books_template.txt");
+            $fileHandle = fopen("./include/database/" . $show_name . ".php", "r+");
+            fputs($fileHandle, $fileContents);
+            fclose($fileHandle);
+            fclose($fileCreate);
+
+            header("Refresh: 1;");
+
+        }
+        elseif ($type == 1)
+        {
+            //$type = "Film";
+            mysqli_query(Connect() , "INSERT INTO movies(movies_name, movies_director, movies_date)
+    values('$show_name', '$author_name', '$release')"); ?>
+
+<div class="alert alert-success">
+  <?php echo "Sikeresen hozzá lett adva az új műsor!"; ?>
+</div>
+<?php
+            $fileCreate = fopen("./include/database/" . $show_name . ".php", "w+");
+
+            $fileContents = file_get_contents("./src/movies_template.txt");
+            $fileHandle = fopen("./include/database/" . $show_name . ".php", "r+");
+            fputs($fileHandle, $fileContents);
+            fclose($fileHandle);
+            fclose($fileCreate);
+
+            header("Refresh: 1;");
+
+        }
+        elseif ($type == 2)
+        {
+            //$type = "Sorozat";
+            
+        }
+        elseif ($type == 3)
+        {
+            //$type = "Anime";
+            
+        }
+        elseif ($type == 4)
+        {
+            //$type = "Dráma";
+            
+        }
+    }
+
+    if ($error == false)
+    {
+    }
 }
-  
 ?>
 
 
