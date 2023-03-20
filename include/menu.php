@@ -1,4 +1,6 @@
 <?php
+ini_set("display_errors", 0);
+ini_set("display_startup_errors", 0);
    $content = "include/main.php";
    $con = Connect();
    $books_query = mysqli_query($con,"SELECT * FROM books");
@@ -55,20 +57,19 @@
                 $author == $movies_result["movies_director"] &&
                 $date == $movies_result["movies_date"]
             ) {
-                $stop = true;
                 $content = "./include/database/movies/".$title.".php";
 
                 ini_set("display_errors", 0);
                 ini_set("display_startup_errors", 0);
             }
             // Könyv
-            elseif (
-                $title == $movies_result["movies_name"] &&
-                $author == $movies_result["movies_director"] &&
-                $date == $movies_result["movies_date"]
+            $books_result = mysqli_fetch_array($books_query);
+            if (
+                $title == $books_result["books_name"] &&
+                $author == $books_result["books_author"] &&
+                $date == $books_result["books_date"]
             ) {
-                $stop = true;
-                $content = "./include/database/movies/".$title.".php";
+                $content = "./include/database/books/".$title.".php";
 
                 ini_set("display_errors", 0);
                 ini_set("display_startup_errors", 0);

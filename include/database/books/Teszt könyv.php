@@ -1,10 +1,8 @@
 <?php
 $con = Connect();
 
-// $_SERVER[PHP_SELF]
 ?>
 <div class="container">
-<!--<img class="picture_page" src="<?php// echo $pic['books_picture']; ?>"/>-->
 <br>
 <div class="text-center display-5">
 <h1>📊 Adatok</h1>
@@ -13,38 +11,36 @@ $con = Connect();
 <table class="table p-5">
 <tr>
     <th scope="col">Cím:</th>
-    <th scope="col">Szerző:</th>
+    <th scope="col">Rendező:</th>
     <th scope="col">Megjelenés:</th>
 </tr>
 <tr>
     <td>
 
 <?php
-$db_books_name = $_GET['p'];
-
-echo $db_books_name;
+echo $_GET['t'];
 ?>
     </td>
     <td>
     <?php
-$db_author = $_GET['p'];
+$db_director = $_GET['a'];
 
-$sql_author = "SELECT books_author FROM books WHERE books_name ='$db_author'";
-$result = mysqli_query($con, $sql_author);
-$sql_author_result = mysqli_fetch_array($result);
+$sql_director = "SELECT movies_director FROM movies WHERE movies_name ='$db_director'";
+$result = mysqli_query($con, $sql_director);
+$sql_director_result = mysqli_fetch_array($result);
 
-echo $sql_author_result['books_author'];
+echo $sql_director_result['movies_director'];
 ?>
     </td>
     <td>
         <?php
-        $db_author = $_GET['p'];
+        $db_director = $_GET['a'];
 
-        $sql_author = "SELECT * FROM books WHERE books_name ='$db_author'";
-        $result = mysqli_query($con, $sql_author);
-        $sql_author_result = mysqli_fetch_array($result);
-        $books_id = $sql_author_result['books_id'];
-        echo $sql_author_result['books_date'];
+        $sql_director = "SELECT * FROM movies WHERE movies_name ='$db_director'";
+        $result = mysqli_query($con, $sql_director);
+        $sql_director_result = mysqli_fetch_array($result);
+        $movies_id = $sql_director_result['movies_id'];
+        echo $sql_director_result['movies_date'];
         ?>
     </td>
 </tr>
@@ -72,12 +68,12 @@ if(isset($_POST['own-list-button']))
 
  echo $userid;
  echo $rating;
- echo $books_id;
+ echo $movies_id;
  echo $opinion;
 
 
- $sql = "INSERT INTO finished_books(finished_books_user_id, finished_books_books_id, finished_books_rating, finished_books_opinion)
-                values('$userid', '$books_id', '$rating','$opinion')";
+ $sql = "INSERT INTO finished_movies(finished_movies_user_id, finished_movies_movies_id, finished_movies_rating, finished_movies_opinion)
+                values('$userid', '$movies_id', '$rating','$opinion')";
   mysqli_query($con, $sql);
 
 ?>

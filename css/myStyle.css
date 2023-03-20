@@ -37,3 +37,16 @@
   margin-left: auto;
   margin-right: auto;;
 }
+
+.Custombutton
+{
+  display: block;
+  margin: auto;
+  width: 300px;
+}
+
+.CustomInput
+{
+  display: block;
+  width: 400px;
+}

@@ -20,31 +20,19 @@ $con = Connect();
     <td>
 
 <?php
-$db_books_name = $_GET['p'];
+$db_books_name = $_GET['t'];
 
 echo $db_books_name;
 ?>
     </td>
     <td>
     <?php
-$db_author = $_GET['p'];
-
-$sql_author = "SELECT books_author FROM books WHERE books_name ='$db_author'";
-$result = mysqli_query($con, $sql_author);
-$sql_author_result = mysqli_fetch_array($result);
-
-echo $sql_author_result['books_author'];
-?>
+        echo $_GET['a'];
+        ?>
     </td>
     <td>
-        <?php
-        $db_author = $_GET['p'];
-
-        $sql_author = "SELECT * FROM books WHERE books_name ='$db_author'";
-        $result = mysqli_query($con, $sql_author);
-        $sql_author_result = mysqli_fetch_array($result);
-        $books_id = $sql_author_result['books_id'];
-        echo $sql_author_result['books_date'];
+    <?php
+        echo $_GET['d'];
         ?>
     </td>
 </tr>

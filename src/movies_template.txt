@@ -1,10 +1,8 @@
 <?php
 $con = Connect();
 
-// $_SERVER[PHP_SELF]
 ?>
 <div class="container">
-<!--<img class="picture_page" src="<?php// echo $pic['books_picture']; ?>"/>-->
 <br>
 <div class="text-center display-5">
 <h1>📊 Adatok</h1>

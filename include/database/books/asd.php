@@ -18,26 +18,22 @@ $con = Connect();
 </tr>
 <tr>
     <td>
-  <h3>
-<?php
 
-echo $_GET['t'];
+<?php
+$db_books_name = $_GET['t'];
+
+echo $db_books_name;
 ?>
-</h3>
     </td>
     <td>
-      <h3>
     <?php
-    echo $_GET['a']
-?>
-</h3>
+        echo $_GET['a'];
+        ?>
     </td>
     <td>
-      <h3>
-        <?php
-        echo $_GET['d']
+    <?php
+        echo $_GET['d'];
         ?>
-        </h3>
     </td>
 </tr>
 </table>

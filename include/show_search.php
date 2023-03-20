@@ -1,17 +1,23 @@
 <?php
 $con = Connect();
 
+$all_cb_value = "";
+$books_cb_value = "";
+$movies_cb_value = "";
+$tvshows_cb_value = "";
+$animes_cb_value = "";
+$drama_cb_value = "";
 function User_ID()
 {
     $user_id = $_SESSION["user_id"];
 }
 
-if (empty($_POST["all"]) == false) {
-    $_POST["books_checkbox"] = off;
-    $_POST["movies_checkbox"] = off;
-    $_POST["tv_shows_checkbox"] = off;
-    $_POST["animes_checkbox"] = off;
-    $_POST["drama_checkbox"] = off;
+if (isset($_POST["all"])) {
+   $books_cb_value = "";
+   $movies_cb_value = "";
+   $tvshows_cb_value = "";
+   $animes_cb_value = "";
+   $drama_cb_value = "";
 }
 
 if (
@@ -46,6 +52,7 @@ if (isset($_POST['delete'])) {
          $delete_date == $row_delete["books_date"]
       ) {
          mysqli_query($con, "DELETE FROM books WHERE books_id = '$id'");
+         unlink("./include/database/books/".$delete_name.".php");
       }
   }
 
@@ -65,6 +72,8 @@ while (
       mysqli_query($con, "DELETE FROM movies WHERE movies_id = '$id'");
    }
 }
+
+
    
       
    header("Location: ./?p=show_search");
@@ -80,12 +89,12 @@ while (
    </div>
    <br>
    <div class="d-flex justify-content-center">
-      <span class="pe-3">Összes</span><input name="all_checkbox" type="checkbox" checked>
-      <span class="pe-3 ps-5">Könyvek</span><input name="books_checkbox" type="checkbox">
-      <span class="pe-3 ps-5">Filmek</span><input name="movies_checkbox" type="checkbox">
-      <span class="pe-3 ps-5">Sorozatok</span><input name="tv_shows_checkbox" type="checkbox">
-      <span class="pe-3 ps-5">Animék</span><input name="animes_checkbox" type="checkbox">
-      <span class="pe-3 ps-5">Drámák</span><input name="drama_checkbox" type="checkbox">
+      <span class="pe-3">Összes</span><input name="all_checkbox" type="checkbox" <?php $all_cb_value ?>>
+      <span class="pe-3 ps-5">Könyvek</span><input name="books_checkbox" type="checkbox" <?php $books_cb_value ?>>
+      <span class="pe-3 ps-5">Filmek</span><input name="movies_checkbox" type="checkbox" <?php $books_cb_value ?>>
+      <span class="pe-3 ps-5">Sorozatok</span><input name="tvshows_checkbox" type="checkbox" <?php $books_cb_value ?>>
+      <span class="pe-3 ps-5">Animék</span><input name="animes_checkbox" type="checkbox" <?php $books_cb_value ?>>
+      <span class="pe-3 ps-5">Drámák</span><input name="drama_checkbox" type="checkbox" <?php $books_cb_value ?>>
    </div>
    <br>
    <table class="table background">
@@ -97,6 +106,7 @@ while (
             <th scope="col">Szerző/Rendező</th>
             <th scope="col">Megjelenés</th>
             <th scope="col">Saját oldaluk</th>
+            <th scope="col">Szerkesztés</th>
             <th scope="col">Törlés</th>
          </tr>
       </thead>
@@ -110,7 +120,16 @@ while (
                                           FROM movies
                                           UNION
                                           SELECT books_name as title, books_author as author, books_date as date, books_id as id
-                                          FROM books"
+                                          FROM books
+                                          UNION
+                                          SELECT animes_name as title, animes_author as author, animes_date as date, animes_id as id
+                                          FROM animes
+                                          UNION
+                                          SELECT tvshows_name as title, tvshows_director as author, tvshows_date as date, tvshows_id as id
+                                          FROM tvshows
+                                          UNION
+                                          SELECT dramas_name as title, dramas_director as author, dramas_date as date, dramas_id as id
+                                          FROM dramas"
             );
             while ($row = mysqli_fetch_array($result)) { ?>
                <tr>
@@ -139,7 +158,7 @@ while (
                              $row_item="movie";
                          }
                      }
-
+                     // Books
                      $result_for_image = mysqli_query(
                          $con,
                          "SELECT * FROM books"
@@ -159,8 +178,67 @@ while (
                          }
                      }
 
-                     
+                     // Animes
+                     $result_for_image = mysqli_query(
+                        $con,
+                        "SELECT * FROM animes"
+                    );
+                    while (
+                        $row_image = mysqli_fetch_array($result_for_image)
+                    ) {
+                        if (
+                            $row["title"] == $row_image["animes_name"] &&
+                            $row["author"] == $row_image["animes_author"] &&
+                            $row["date"] == $row_image["animes_date"]
+                        ) {
+                          $animes_pic =
+                          '<img src="./img/animes.png" alt="animes">';
+                          echo $animes_pic;
+                          $row_item="anime";
+                        }
+                    }
+
+
+                    // Tv Shows
+                    $result_for_image = mysqli_query(
+                     $con,
+                     "SELECT * FROM tvshows"
+                 );
+                 while (
+                     $row_image = mysqli_fetch_array($result_for_image)
+                 ) {
+                     if (
+                         $row["title"] == $row_image["tvshows_name"] &&
+                         $row["author"] == $row_image["tvshows_director"] &&
+                         $row["date"] == $row_image["tvshows_date"]
+                     ) {
+                       $tvshows_pic =
+                       '<img src="./img/tvshows.png" alt="tvshows">';
+                       echo $tvshows_pic;
+                       $row_item="tvshow";
+                     }
+                 }
                     
+
+                 // Dramas
+                 $result_for_image = mysqli_query(
+                  $con,
+                  "SELECT * FROM dramas"
+              );
+              while (
+                  $row_image = mysqli_fetch_array($result_for_image)
+              ) {
+                  if (
+                      $row["title"] == $row_image["dramas_name"] &&
+                      $row["author"] == $row_image["dramas_director"] &&
+                      $row["date"] == $row_image["dramas_date"]
+                  ) {
+                    $tvshows_pic =
+                    '<img src="./img/dramas.png" alt="dramas">';
+                    echo $tvshows_pic;
+                    $row_item="drama";
+                  }
+              }
                     
                      ?><br>
                   </td>
@@ -182,14 +260,42 @@ while (
                      </a>
                   </td>
                   <td>
-                  <form method="POST" style="display: inline;">
+                  
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#<?php echo $row['id']; ?><?php echo $row_item; ?>">
+  Launch static backdrop modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="<?php echo $row['id']; ?><?php echo $row_item; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <?php
+        echo $row['id'];
+        echo $row_item;
+        ?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+                  </td>
+                  <td>
                      <input type="hidden" name="id" value="<?php echo $row['id'];?>">
 
                      <input type="hidden" name="name" value="<?php echo $row['title'];?>">
                      <input type="hidden" name="author_del" value="<?php echo $row['author'];?>">
                      <input type="hidden" name="date" value="<?php echo $row['date'];?>">
                      <button type="submit" name="delete" class="btn btn-danger btn-sm">Törlés</button>
-                  </form>
 
                   </td>
                </tr>
