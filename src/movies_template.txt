@@ -1,8 +1,10 @@
 <?php
 $con = Connect();
 
+// $_SERVER[PHP_SELF]
 ?>
 <div class="container">
+<!--<img class="picture_page" src="<?php// echo $pic['books_picture']; ?>"/>-->
 <br>
 <div class="text-center display-5">
 <h1>📊 Adatok</h1>
@@ -18,31 +20,19 @@ $con = Connect();
     <td>
 
 <?php
-$db_movies_name = $_GET['p'];
+$db_movies_name = $_GET['t'];
 
 echo $db_movies_name;
 ?>
     </td>
     <td>
     <?php
-$db_director = $_GET['p'];
-
-$sql_director = "SELECT movies_director FROM movies WHERE movies_name ='$db_director'";
-$result = mysqli_query($con, $sql_director);
-$sql_director_result = mysqli_fetch_array($result);
-
-echo $sql_director_result['movies_director'];
-?>
+        echo $_GET['a'];
+        ?>
     </td>
     <td>
-        <?php
-        $db_director = $_GET['p'];
-
-        $sql_director = "SELECT * FROM movies WHERE movies_name ='$db_director'";
-        $result = mysqli_query($con, $sql_director);
-        $sql_director_result = mysqli_fetch_array($result);
-        $movies_id = $sql_director_result['movies_id'];
-        echo $sql_director_result['movies_date'];
+    <?php
+        echo $_GET['d'];
         ?>
     </td>
 </tr>
@@ -57,7 +47,20 @@ echo $sql_director_result['movies_director'];
 
   <div class="collapse" id="reminder">
   <div class="card card-body">
-A Tót család és az őrnagy kalandos történetük.
+    <?php
+    $sql_date = $_GET['d'];
+    $sql_title = $_GET['t'];
+    $sql_author = $_GET['a'];
+
+    $sql_search = "SELECT movies_spoiler FROM movies WHERE movies_name = '$sql_title' AND movies_director = '$sql_author' AND movies_date = '$sql_date'";
+    
+    $sql_query = mysqli_query($con,$sql_search);
+    
+    while ($result_spoiler = mysqli_fetch_array($sql_query)) {
+      echo $result_spoiler['movies_spoiler'];
+    }
+    
+    ?>
 </div>
 </div>
 <p class="biggerBr"></p>
@@ -70,12 +73,12 @@ if(isset($_POST['own-list-button']))
 
  echo $userid;
  echo $rating;
- echo $movies_id;
+ echo $books_id;
  echo $opinion;
 
 
- $sql = "INSERT INTO finished_movies(finished_movies_user_id, finished_movies_movies_id, finished_movies_rating, finished_movies_opinion)
-                values('$userid', '$movies_id', '$rating','$opinion')";
+ $sql = "INSERT INTO finished_movies(finished_movies_user_id, finished_movies_books_id, finished_movies_rating, finished_movies_opinion)
+                values('$userid', '$books_id', '$rating','$opinion')";
   mysqli_query($con, $sql);
 
 ?>

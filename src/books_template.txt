@@ -47,7 +47,20 @@ echo $db_books_name;
 
   <div class="collapse" id="reminder">
   <div class="card card-body">
-A Tót család és az őrnagy kalandos történetük.
+    <?php
+    $sql_date = $_GET['d'];
+    $sql_title = $_GET['t'];
+    $sql_author = $_GET['a'];
+
+    $sql_search = "SELECT books_spoiler FROM books WHERE books_name = '$sql_title' AND books_author = '$sql_author' AND books_date = '$sql_date'";
+    
+    $sql_query = mysqli_query($con,$sql_search);
+    
+    while ($result_spoiler = mysqli_fetch_array($sql_query)) {
+      echo $result_spoiler['books_spoiler'];
+    }
+    
+    ?>
 </div>
 </div>
 <p class="biggerBr"></p>

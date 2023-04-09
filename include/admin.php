@@ -94,13 +94,6 @@ if (isset($_POST["btn-add-show"]))
   <?php echo "Sikeresen hozzá lett adva az új műsor!"; ?>
 </div>
 <?php
-            $fileCreate = fopen("./include/database/books/" . $show_name . ".php", "w+");
-
-            $fileContents = file_get_contents("./src/books_template.txt");
-            $fileHandle = fopen("./include/database/books/" . $show_name . ".php", "r+");
-            fputs($fileHandle, $fileContents);
-            fclose($fileHandle);
-            fclose($fileCreate);
 
             header("Refresh: 1;");
 
@@ -115,13 +108,6 @@ if (isset($_POST["btn-add-show"]))
   <?php echo "Sikeresen hozzá lett adva az új műsor!"; ?>
 </div>
 <?php
-            $fileCreate = fopen("./include/database/movies/" . $show_name . ".php", "w+");
-
-            $fileContents = file_get_contents("./src/movies_template.txt");
-            $fileHandle = fopen("./include/database/movies/" . $show_name . ".php", "r+");
-            fputs($fileHandle, $fileContents);
-            fclose($fileHandle);
-            fclose($fileCreate);
 
             header("Refresh: 1;");
 
@@ -137,13 +123,6 @@ if (isset($_POST["btn-add-show"]))
   <?php echo "Sikeresen hozzá lett adva az új műsor!"; ?>
 </div>
 <?php
-            $fileCreate = fopen("./include/database/tvshows/" . $show_name . ".php", "w+");
-
-            $fileContents = file_get_contents("./src/tvshows_template.txt");
-            $fileHandle = fopen("./include/database/tvshows/" . $show_name . ".php", "r+");
-            fputs($fileHandle, $fileContents);
-            fclose($fileHandle);
-            fclose($fileCreate);
 
             header("Refresh: 1;");
             
@@ -159,14 +138,6 @@ if (isset($_POST["btn-add-show"]))
   <?php echo "Sikeresen hozzá lett adva az új műsor!"; ?>
 </div>
 <?php
-            $fileCreate = fopen("./include/database/animes/" . $show_name . ".php", "w+");
-
-            $fileContents = file_get_contents("./src/animes_template.txt");
-            $fileHandle = fopen("./include/database/animes/" . $show_name . ".php", "r+");
-            fputs($fileHandle, $fileContents);
-            fclose($fileHandle);
-            fclose($fileCreate);
-
             header("Refresh: 1;");
             
         }
@@ -181,14 +152,6 @@ if (isset($_POST["btn-add-show"]))
   <?php echo "Sikeresen hozzá lett adva az új műsor!"; ?>
 </div>
 <?php
-            $fileCreate = fopen("./include/database/dramas/" . $show_name . ".php", "w+");
-
-            $fileContents = file_get_contents("./src/dramas_template.txt");
-            $fileHandle = fopen("./include/database/dramas/" . $show_name . ".php", "r+");
-            fputs($fileHandle, $fileContents);
-            fclose($fileHandle);
-            fclose($fileCreate);
-
             header("Refresh: 1;");
             
         }
@@ -205,22 +168,28 @@ if (isset($_POST["btn-add-show"]))
   <div class="form-floating mb-3 row">
     
     <div class="col">
-    <input type="text" name="show-name" class="form-control CustomInput mx-auto" id="add-show-name" aria-describedby="emailHelp" placeholder="Műsor neve...">
-    </div>
+    <div class="col-sm-4 container">
+    <input type="text" name="show-name" class="form-control" id="add-show-name" aria-describedby="emailHelp" placeholder="Műsor neve...">
+</div>
+  </div>
 
   
   </div>
   
 <br>
   <div class="row">
-  <label for="add-show-name" class="form-label">Típusa:</label>
-  <div class="">
-    <span class="pe-3 ps-5">Könyv</span><input type="checkbox" name="book">
-    <span class="pe-3 ps-5">Film</span><input type="checkbox" name="movie">
-    <span class="pe-3 ps-5">Sorozat</span><input type="checkbox" name="tvshow">
-    <span class="pe-3 ps-5">Anime</span><input type="checkbox" name="anime">
-    <span class="pe-3 ps-5">Színházi előadás</span><input type="checkbox" name="drama">
-    </div>
+  <label for="add-show-name" class="form-label AdminLabel">Típusa:</label>
+  <div class="table-responsive">
+  <table class="table background">
+    <thead>
+    <th scope="col"><span class="pe-2">Könyv</span><input type="checkbox" name="book"></th>
+    <th scope="col"><span class="pe-2">Film</span><input type="checkbox" name="movie"></th>
+    <th scope="col"><span class="pe-2">Sorozat</span><input type="checkbox" name="tvshow"></th>
+    <th scope="col"><span class="pe-2">Anime</span><input type="checkbox" name="anime"></th>
+    <th scope="col"><span class="pe-2">Dráma</span><input type="checkbox" name="drama"></th>
+    </thead>
+    </table>
+  </div>
   </div>
 <br>
   <div class="mb-3 row">

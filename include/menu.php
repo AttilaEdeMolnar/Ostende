@@ -1,10 +1,17 @@
 <?php
 ini_set("display_errors", 0);
 ini_set("display_startup_errors", 0);
+
+
+
+
    $content = "include/main.php";
    $con = Connect();
    $books_query = mysqli_query($con,"SELECT * FROM books");
    $movies_query = mysqli_query($con,"SELECT * FROM movies");
+   $tvshows_query = mysqli_query($con,"SELECT * FROM tvshows");
+   $animes_query = mysqli_query($con,"SELECT * FROM animes");
+   $dramas_query = mysqli_query($con,"SELECT * FROM dramas");
    $main = mysqli_query(
     $con,
     "SELECT movies_name as title, movies_director as author, movies_date as date
@@ -25,13 +32,19 @@ ini_set("display_startup_errors", 0);
                 $content = "include/logout.php";
                 break;
             case "admin":
-                $content = "include/admin.php";
+
+                if($_SESSION['user_type']== 1)
+                {
+                $content = "./include/admin.php";
+                }
+
+                else
+                {
+                    $content = "./include/error.php";
+                }
                 break;
             case "credit":
                 $content = "include/credit.php";
-                break;
-            case "show_search":
-                $content = "include/show_search.php";
                 break;
             case "profile":
                 $content = "include/profile.php";
@@ -39,86 +52,46 @@ ini_set("display_startup_errors", 0);
             case "own_list":
                 $content = "include/own_list.php";
                 break;
+            case "books":
+                $content = "include/contents/books.php";
+                break;
+            case "animes":
+                $content = "include/contents/animes.php";
+                break;
+            case "movies":
+                $content = "include/contents/movies.php";
+                break;
+            case "tvshows":
+                $content = "include/contents/tvshows.php";
+                break;
+            case "dramas":
+                $content = "include/contents/dramas.php";
+                break;
+            case "animes_page":
+                $content = "include/pages/animes_page.php";
+                break;
+            case "dramas_page":
+                $content = "include/pages/dramas_page.php";
+                break;
+            case "movies_page":
+                $content = "include/pages/movies_page.php";
+                break;
+            case "books_page":
+                $content = "include/pages/books_page.php";
+                break;
+            case "tvshows_page":
+                $content = "include/pages/tvshows_page.php";
+                break;
+            default:
+                $content = "include/error.php";
             }   
    }
 
-
-   elseif(isset($_GET["t"]) && isset($_GET["a"]) && isset($_GET["d"]))
-   {
-	
-    while ($row = mysqli_fetch_array($main)) {
-               $title = $_GET["t"];
-               $author = $_GET["a"];
-               $date = $_GET["d"];
-                // Film
-               $movies_result = mysqli_fetch_array($movies_query);
-               if (
-                $title == $movies_result["movies_name"] &&
-                $author == $movies_result["movies_director"] &&
-                $date == $movies_result["movies_date"]
-            ) {
-                $content = "./include/database/movies/".$title.".php";
-
-                ini_set("display_errors", 0);
-                ini_set("display_startup_errors", 0);
-            }
-            // Könyv
-            $books_result = mysqli_fetch_array($books_query);
-            if (
-                $title == $books_result["books_name"] &&
-                $author == $books_result["books_author"] &&
-                $date == $books_result["books_date"]
-            ) {
-                $content = "./include/database/books/".$title.".php";
-
-                ini_set("display_errors", 0);
-                ini_set("display_startup_errors", 0);
-            }
-            // Sorozat
-            /*
-            elseif (
-                $title == $movies_result["movies_name"] &&
-                $author == $movies_result["movies_director"] &&
-                $date == $movies_result["movies_date"]
-            ) {
-                $stop = true;
-                $content = "./include/database/movies/".$title.".php";
-
-                ini_set("display_errors", 0);
-                ini_set("display_startup_errors", 0);
-            }
-            */
-
-            // Anime
-            /*
-            elseif (
-                $title == $movies_result["movies_name"] &&
-                $author == $movies_result["movies_director"] &&
-                $date == $movies_result["movies_date"]
-            ) {
-                $stop = true;
-                $content = "./include/database/movies/".$title.".php";
-
-                ini_set("display_errors", 0);
-                ini_set("display_startup_errors", 0);
-            }
-            */
-
-            // Színházi előadás
-            /*
-            elseif (
-                $title == $movies_result["movies_name"] &&
-                $author == $movies_result["movies_director"] &&
-                $date == $movies_result["movies_date"]
-            ) {
-                $stop = true;
-                $content = "./include/database/movies/".$title.".php";
-
-                ini_set("display_errors", 0);
-                ini_set("display_startup_errors", 0);
-            }
-            */
+   
+   else{
+    if(isset($_SESSION['user_id']))
+    {
+    $content = "include/error.php";
+    }
    }
-
-}
 ?>

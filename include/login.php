@@ -21,26 +21,38 @@ if(isset($_POST["btn-login"]))
   {
     $password = md5($password);
     $db = "SELECT * from user where user_name='$username' and user_password='$password'";
-    if (mysqli_query($con,$db)) 
-    {
-      $sucess_login = true;
-      
-      $result = mysqli_query($con, "SELECT user_id from user WHERE user_name = '$username' and user_password='$password'");
-      $current_user_id = $result;
-      while($row = mysqli_fetch_array($result)) 
-        {
-          $_SESSION['user_id'] = $row['user_id'];
-          $msg_success_login = "Sikeres bejelentkezés!";
-          header('Refresh: 1; url= ./?p=show_search');
-        }
 
-    }
-    else 
+    $search_query = mysqli_query($con,$db);
+    $search_array = mysqli_fetch_array($search_query);
+
+    if(empty($search_array['user_id']))
     {
       $error=true;
       $msg = "Hibás adatok. Ellenőrizd, hogy megfelelő jelszót adtál meg!";
     }
+
+    elseif (mysqli_query($con,$db)) 
+    {
+      $sucess_login = true;
+      
+      $result = mysqli_query($con, "SELECT * from user WHERE user_name = '$username' and user_password='$password'");
+      $current_user_id = $result;
+      while($row = mysqli_fetch_array($result)) 
+        {
+          $_SESSION['user_id'] = $row['user_id'];
+          $_SESSION['user_type'] = $row['user_type'];
+          $msg_success_login = "Sikeres bejelentkezés!";
+          header('Refresh: 1; url= ./?p=own_list');
+        }
+
+    }
+    
   }
+  else 
+    {
+      $error=true;
+      $msg = "Hibás adatok. Ellenőrizd, hogy megfelelő jelszót adtál meg!";
+    }
 }
 ?>
 
@@ -150,7 +162,9 @@ if(isset($_POST['btn-register'])){
     <label for="exampleInputPassword1" class="form-label">Password</label>
     <input type="password" name="login-pass" class="form-control" id="exampleInputPassword1">
   </div>
+  <div class="text-center">
   <button type="submit" name="btn-login" class="btn btn-primary">Bejelentkezés</button>
+</div>
 </form>
     </div>
 
@@ -252,7 +266,9 @@ if(isset($_POST['btn-register'])){
     <input type="checkbox" name="aszf_checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" name="aszf_check" for="exampleCheck1">ÁSZF</label>
   </div>
+  <div class="text-center">
   <button type="submit" class="btn btn-primary" name="btn-register">Regisztráció</button>
+</div>
 </form>
 </div>
 </div>

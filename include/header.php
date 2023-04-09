@@ -17,12 +17,16 @@
 
 <body class="background">
   <header class="sticky-top">
-  <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+    <img src="./img/eye.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+      Ostende</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+    <div class="collapse navbar-collapse" id="navbarDown">
+      <ul class="navbar-nav container">
       <?php
       if(!isset($_SESSION['user_id']))
       {
@@ -54,9 +58,18 @@
       <?php
       }
       ?>
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="./?p=show_search">Műsorok</a>
-      </li>
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle nav-link active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Tartalmak
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="./?p=animes">Animék</a></li>
+            <li><a class="dropdown-item" href="./?p=dramas">Drámák</a></li>
+            <li><a class="dropdown-item" href="./?p=movies">Filmek</a></li>
+            <li><a class="dropdown-item" href="./?p=books">Könyvek</a></li>
+            <li><a class="dropdown-item" href="./?p=tvshows">Sorozatok</a></li>
+          </ul>
+        </li>
       <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="./?p=own_list">Saját lista</a>
       </li>
@@ -69,7 +82,8 @@
       <?php
       }
       ?>
-    </ul>
+      </ul>
+    </div>
   </div>
 </nav>
   </header>
