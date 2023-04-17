@@ -40,6 +40,7 @@ if(isset($_POST['own-list-button']))
 <h1>📊 Adatok</h1>
 <br>
 <div class="d-flex justify-content-center">
+<div class="table-responsive">
 <table class="table p-5">
 <tr>
     <th scope="col">Cím:</th>
@@ -65,6 +66,7 @@ echo $result['dramas_date'];
     </td>
 </tr>
 </table>
+</div>
 <br>
 <p class="biggerBr"></p>
 </div>

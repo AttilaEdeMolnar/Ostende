@@ -113,7 +113,7 @@ function redirectToPage() {
                                 <tr>
                                     <td>Vélemény:</td>
                                     <td><?php echo $animes_row['finished_animes_opinion']; ?></td>
-                                    <td><input type="text" name="animes-new-opinion-<?php echo $animes_row['finished_animes_animes_id']; ?>" class="form-control" placeholder="Új vélemény..."></td>
+                                    <td><input type="text" name="animes-new-opinion-<?php echo $animes_row['finished_animes_animes_id']; ?>" class="form-control CustomInput3" placeholder="Új vélemény..."></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -126,7 +126,7 @@ function redirectToPage() {
   </div>
 </div>
           </td>
-          <td><button type="submit" name="animes-btn-delete" value="<?php echo $animes_row['finished_animes_animes_id']; ?>" class="btn btn-danger btn-sm">Törlés</button></td>
+          <td><button type="submit" name="animes-btn-delete" value="<?php echo $animes_row['finished_animes_animes_id']; ?>" class="btn btn-danger ">Törlés</button></td>
         </tr>
         <?php
         }
@@ -282,7 +282,7 @@ $dramas_result = mysqli_query($con,$sql_dramas_result);
                                 <tr>
                                     <td>Vélemény:</td>
                                     <td><?php echo $dramas_row['finished_dramas_opinion']; ?></td>
-                                    <td><input type="text" name="dramas-new-opinion-<?php echo $dramas_row['finished_dramas_dramas_id']; ?>" class="form-control" placeholder="Új vélemény..."></td>
+                                    <td><input type="text" name="dramas-new-opinion-<?php echo $dramas_row['finished_dramas_dramas_id']; ?>" class="form-control CustomInput3" placeholder="Új vélemény..."></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -295,7 +295,7 @@ $dramas_result = mysqli_query($con,$sql_dramas_result);
   </div>
 </div>
           </td>
-          <td><button type="submit" name="dramas-btn-delete" value="<?php echo $dramas_row['finished_dramas_dramas_id']; ?>" class="btn btn-danger btn-sm">Törlés</button></td>
+          <td><button type="submit" name="dramas-btn-delete" value="<?php echo $dramas_row['finished_dramas_dramas_id']; ?>" class="btn btn-danger ">Törlés</button></td>
         </tr>
         <?php
         }
@@ -451,7 +451,7 @@ $movies_result = mysqli_query($con,$sql_movies_result);
                                 <tr>
                                     <td>Vélemény:</td>
                                     <td><?php echo $movies_row['finished_movies_opinion']; ?></td>
-                                    <td><input type="text" name="movies-new-opinion-<?php echo $movies_row['finished_movies_movies_id']; ?>" class="form-control" placeholder="Új vélemény..."></td>
+                                    <td><input type="text" name="movies-new-opinion-<?php echo $movies_row['finished_movies_movies_id']; ?>" class="form-control CustomInput3" placeholder="Új vélemény..."></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -464,7 +464,7 @@ $movies_result = mysqli_query($con,$sql_movies_result);
   </div>
 </div>
           </td>
-          <td><button type="submit" name="movies-btn-delete" value="<?php echo $movies_row['finished_movies_movies_id']; ?>" class="btn btn-danger btn-sm">Törlés</button></td>
+          <td><button type="submit" name="movies-btn-delete" value="<?php echo $movies_row['finished_movies_movies_id']; ?>" class="btn btn-danger ">Törlés</button></td>
         </tr>
         <?php
         }
@@ -543,7 +543,7 @@ $books_result = mysqli_query($con,$sql_books_result);
 ?>
   <form method="POST">
     <div class="col-sm-4 container">
-    <input type="text" name="books-search" class="form-control" placeholder="Keresés a filmeid között...">
+    <input type="text" name="books-search" class="form-control" placeholder="Keresés a könyveid között...">
     </div>
     <br>
   </form>
@@ -620,7 +620,7 @@ $books_result = mysqli_query($con,$sql_books_result);
                                 <tr>
                                     <td>Vélemény:</td>
                                     <td><?php echo $books_row['finished_books_opinion']; ?></td>
-                                    <td><input type="text" name="books-new-opinion-<?php echo $books_row['finished_books_books_id']; ?>" class="form-control" placeholder="Új vélemény..."></td>
+                                    <td><input type="text" name="books-new-opinion-<?php echo $books_row['finished_books_books_id']; ?>" class="form-control CustomInput3" placeholder="Új vélemény..."></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -633,7 +633,7 @@ $books_result = mysqli_query($con,$sql_books_result);
   </div>
 </div>
           </td>
-          <td><button type="submit" name="books-btn-delete" value="<?php echo $books_row['finished_books_books_id']; ?>" class="btn btn-danger btn-sm">Törlés</button></td>
+          <td><button type="submit" name="books-btn-delete" value="<?php echo $books_row['finished_books_books_id']; ?>" class="btn btn-danger ">Törlés</button></td>
         </tr>
         <?php
         }
@@ -714,7 +714,7 @@ $tvshows_result = mysqli_query($con,$sql_tvshows_result);
   <form method="POST">
 
     <div class="col-sm-4 container">
-    <input type="text" name="tvshows-search" class="form-control" placeholder="Keresés a filmeid között...">
+    <input type="text" name="tvshows-search" class="form-control" placeholder="Keresés a sorozataid között...">
     </div>
     <br>
   </form>
@@ -791,7 +791,7 @@ $tvshows_result = mysqli_query($con,$sql_tvshows_result);
                                 <tr>
                                     <td>Vélemény:</td>
                                     <td><?php echo $tvshows_row['finished_tvshows_opinion']; ?></td>
-                                    <td><input type="text" name="tvshows-new-opinion-<?php echo $tvshows_row['finished_tvshows_tvshows_id']; ?>" class="form-control" placeholder="Új vélemény..."></td>
+                                    <td><input type="text" name="tvshows-new-opinion-<?php echo $tvshows_row['finished_tvshows_tvshows_id']; ?>" class="form-control CustomInput3" placeholder="Új vélemény..."></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -804,7 +804,7 @@ $tvshows_result = mysqli_query($con,$sql_tvshows_result);
   </div>
 </div>
           </td>
-          <td><button type="submit" name="tvshows-btn-delete" value="<?php echo $tvshows_row['finished_tvshows_tvshows_id']; ?>" class="btn btn-danger btn-sm">Törlés</button></td>
+          <td><button type="submit" name="tvshows-btn-delete" value="<?php echo $tvshows_row['finished_tvshows_tvshows_id']; ?>" class="btn btn-danger ">Törlés</button></td>
         </tr>
         <?php
         }

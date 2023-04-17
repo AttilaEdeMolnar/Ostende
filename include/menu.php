@@ -91,7 +91,7 @@ ini_set("display_startup_errors", 0);
    else{
     if(isset($_SESSION['user_id']))
     {
-    $content = "include/error.php";
+    $content = "include/own_list.php";
     }
    }
 ?>

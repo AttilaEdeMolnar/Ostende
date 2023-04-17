@@ -41,6 +41,7 @@ if(isset($_POST['own-list-button']))
 <h1>📊 Adatok</h1>
 <br>
 <div class="d-flex justify-content-center">
+<div class="table-responsive">
 <table class="table p-5">
 <tr>
     <th scope="col">Cím:</th>
@@ -66,11 +67,12 @@ echo $result['animes_date'];
     </td>
 </tr>
 </table>
+</div>
 <br>
 <p class="biggerBr"></p>
 </div>
 </div>
-<button class="btn btn-danger mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#reminder" aria-expanded="false" aria-controls="collapseExample">
+<button class="btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#reminder" aria-expanded="false" aria-controls="collapseExample">
     Emlékeztető (SPOILER)
   </button>
 

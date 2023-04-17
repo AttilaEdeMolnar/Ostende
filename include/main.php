@@ -1,5 +1,46 @@
 <div class="background container">
-    <h1 class="text-center display-5">Ostende</h1>
+    <div id="carouselExampleCaptions" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="./img/anime.png" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block White">
+        <h2>Megnézted vagy elolvastad?</h2>
+        <h5>Keresd ki, értékeld, majd add hozzá a saját listádhoz!</h5>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="./img/own_list.png" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block White">
+      <h2>Rendszerezd!</h2>
+      <h5>Nézd meg az értékeléseidet egy helyen. Változtatnál rajta? Szerkeszd vagy töröld ki!</h5>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="./img/profile.png" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block White">
+      <h2>Profil</h2>
+        <h5>Szerkeszd a profilod!</h5>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
 
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut quidem fugiat sed, voluptatibus suscipit labore consectetur quam beatae eius optio blanditiis aliquam commodi praesentium! Accusantium architecto, consectetur corporis voluptas deleniti distinctio, sit assumenda, nihil dolores aut minima inventore? Vel suscipit veniam corrupti quia quis possimus officiis doloremque neque nostrum saepe dolores quo error sint quos, aliquid esse porro odit expedita nesciunt veritatis culpa. Sequi temporibus delectus cumque, eos quos sed? Voluptas vitae corporis omnis! Labore dolore at magnam sit excepturi similique doloremque laboriosam totam ratione, quo tempora officiis architecto est error praesentium eaque, quibusdam maiores. Consectetur possimus unde, inventore quo odit iste animi laudantium quidem quas iusto. Sit est ipsam ullam porro eius corporis quod blanditiis maxime aliquam libero quaerat neque iste, repudiandae, ipsa eum vitae cupiditate obcaecati autem. Ratione non dolorum possimus pariatur ipsum, itaque commodi quos nulla animi ipsa accusantium. Vitae possimus nisi praesentium, iure enim consequuntur expedita. Exercitationem, qui tempora explicabo ipsam, libero voluptatibus optio deserunt perferendis distinctio sapiente eum dolorem recusandae aut, cum nam dicta amet omnis a odit neque tenetur enim! Ipsa harum sint excepturi voluptatibus eveniet iste sequi aliquam, obcaecati, debitis culpa corporis explicabo fuga autem quaerat corrupti architecto ab reprehenderit ipsam totam. Ducimus!
+<p class="biggerBr"></p>
+
+<h1 class="text-center">Ostende</h1>
+<br>
+<h3 class="text-center">A weboldal célja, hogy lehetőséget nyújtson a megnézett tartalmaid rendszerezésének.</h3>
 </div>

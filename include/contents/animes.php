@@ -128,9 +128,8 @@ $sql_user_id_array = mysqli_fetch_array($sql_user_id_result);
                                 <tr>
                                     <td>Spoiler:</td>
                                     <td><?php echo $row['animes_spoiler']; ?></td>
-                                    <td><div class="input-group">
-                                        <textarea class="form-control" name="new-spoiler-<?php echo $row['animes_id']?>" placeholder="Új spoiler..."></textarea>
-                                        </div>
+                                    <td>
+                                        <input type="text" class="form-control CustomInput3" name="new-spoiler-<?php echo $row['animes_id']?>" placeholder="Új spoiler..."></input>
                                     </td>
                                 </tr>
                             </tbody>

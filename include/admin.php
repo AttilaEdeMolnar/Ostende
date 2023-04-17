@@ -1,5 +1,11 @@
 <div class="container">
-
+<script>
+function redirectToPage() {
+  setTimeout(function() {
+        location.href = './?p=admin';
+    }, 2000);
+    }
+</script>
 <?php
 ini_set("display_errors", 0);
 ini_set("display_startup_errors", 0);
@@ -19,6 +25,41 @@ if (isset($_POST["btn-add-show"]))
     $c_anime = $_POST["anime"];
     $c_drama = $_POST["drama"];
 
+
+    if(empty($author_name))
+    {
+      ?>
+
+    <div class="alert alert-danger">
+      <?php
+        $error = true;
+        echo "Hiányzik a szerzője/rendezője!";
+      ?>
+    </div>
+    <script>
+      redirectToPage();
+    </script>
+  <?php
+
+    }
+
+    if(empty($release))
+    {
+      ?>
+
+    <div class="alert alert-danger">
+      <?php
+        $error = true;
+        echo "Hiányzik a tartalom megjelenési dátuma!";
+      ?>
+    </div>
+    <script>
+      redirectToPage();
+    </script>
+  <?php
+
+    }
+
     $checkbox = [$c_book, $c_movie, $c_tv_show, $c_anime, $c_drama];
     if (empty($show_name))
     { ?>
@@ -28,6 +69,9 @@ if (isset($_POST["btn-add-show"]))
         $error = true;
         echo "Hiányzik a műsor neve!";
 ?>
+    <script>
+      redirectToPage();
+    </script>
     </div>
   <?php
     }
@@ -68,7 +112,11 @@ if (isset($_POST["btn-add-show"]))
       <?php
         $error = true;
         echo "Hiányzik a műsor típusa!";
+        
 ?>
+  <script>
+      redirectToPage();
+    </script>
     </div>
   <?php
     }
@@ -80,6 +128,9 @@ if (isset($_POST["btn-add-show"]))
         echo "Csak 1 típust választhatsz ki!";
 ?>
     </div>
+    <script>
+      redirectToPage();
+    </script>
   <?php
     }
     if ($error == false)
@@ -194,11 +245,11 @@ if (isset($_POST["btn-add-show"]))
 <br>
   <div class="mb-3 row">
     <div class="col">
-    <input type="text" name="add-author" class="form-control" id="add-author" aria-describedby="emailHelp" placeholder="Szerző...">
+    <input type="text" name="add-author" class="form-control" id="add-author" aria-describedby="emailHelp" placeholder="Szerző/rendező...">
     </div>
     <div class="col">
     
-    <input type="text" name="add-release-date" class="form-control" id="add-release-date" aria-describedby="emailHelp" placeholder="Megjelenés...">
+    <input type="number" name="add-release-date" class="form-control" id="add-release-date" aria-describedby="emailHelp" placeholder="Megjelenés...">
     </div>
   </div>
   <p class="bigBr"></p>
